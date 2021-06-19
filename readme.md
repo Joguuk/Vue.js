@@ -7,7 +7,7 @@
   * mutations: state 값을 변경하는 이벤트 로직 methods
   * actions: 비동기 처리 로직을 선언하는 메소드 aysnc methods
 - Vuex를 더 쉽게 코딩할 수 있는 방법으로 Helper 기능이 있음
-
+ 
 ## Vuex란?
 - 무수히 많은 컴포넌트의 데이터를 관리하기 위한 상태 관리 패턴이자 라이브러리
 - React의 Flux 패턴에서 기인
