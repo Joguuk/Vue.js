@@ -5,8 +5,8 @@
         <nuxt-link :to="{ name: 'PostEditPage', params: { postId } }">수정</nuxt-link>
         <button @click="onDelete">삭제</button>
         <nuxt-link :to="{ name: 'PostListPage' }">목록</nuxt-link>
-        <comment-list v-if="post" :comments="post.comments" />
-        <comment-form @submit="onCommentSubmit" />
+        <!-- <comment-list v-if="post" :comments="post.comments" />
+        <comment-form @submit="onCommentSubmit" /> -->
     </div>
 </template>
 
@@ -72,12 +72,19 @@ export default {
             'isAuthorized'
         ])
     },
-    created() {
-        this.fetchPost(`/${this.$route.params.postId}`)
+    fetch() {
+        this.fetchPost(`${this.$route.params.postId}`)
             .catch(err => {
                 alert(err.response.data.msg);
                 this.$router.back()
-            }) 
+            })
+    },
+    created() {
+        // this.fetchPost(`${this.$route.params.postId}`)
+        //     .catch(err => {
+        //         alert(err.response.data.msg);
+        //         this.$router.back()
+        //     })
     }
 }
 </script>

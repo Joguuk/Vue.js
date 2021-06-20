@@ -13,7 +13,7 @@ import { mapState, mapActions } from 'vuex'
 export default {
     name: 'PostListPage',
     components: { PostList },
-    created() {
+    fetch() {
         this.fetchPostList();
     },
     methods: {

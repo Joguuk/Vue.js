@@ -1,11 +1,11 @@
 <template>
     <div class="post-view">
         <div>
-            <h1>{{ post.title }}</h1>
-            <span>게시물 번호 {{ post.id }}</span>
-            <strong>{{ post.user.name }} . {{ post.createdAt }}</strong>
+            <h1>{{ post.bbsTit }}</h1>
+            <span>게시물 번호 {{ post.bbsId }}</span>
+            <strong>{{ post.regUserId }} . {{ post.regDttm }}</strong>
         </div>
-        <p>{{ post.contents }}</p>
+        <p>{{ post.bbsCntn }}</p>
     </div>
 </template>
 
@@ -17,9 +17,9 @@ export default {
 	        type: Object,
 	        required: true,
 	        validator (post) {
-	            const isValidPostId = typeof post.id === 'number'
-	            const isValidTitle = !!post.title && post.title.length
-	            const isValidContents = post.contents && post.contents.length
+	            const isValidPostId = typeof post.bbsId === 'number'
+	            const isValidTitle = !!post.bbsTit && post.bbsTit.length
+	            const isValidContents = post.bbsCntn && post.bbsCntn.length
 
                 console.log(isValidPostId)
                 console.log(isValidTitle)
