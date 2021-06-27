@@ -13,7 +13,7 @@
 	            placeholder="게시물 내용을 입력해주세요." >
 	        </textarea>
 	        <button type="submit">수정하기</button>
-	        <nuxt-link :to="{ name: 'PostViewPage', params: { postId: post.id } }">취소</nuxt-link>
+	        <nuxt-link :to="{ path: '/post/' + post.id }">취소</nuxt-link>
         </fieldset>> 
     </form>
 </template>

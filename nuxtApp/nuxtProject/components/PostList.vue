@@ -17,15 +17,16 @@
             </thead>
             <tbody>
                 <tr v-for="post in posts" :key="post.id">
-                    <td scope="col">{{ post.bbsId }}</td>
+                    <td scope="col">{{ post.id }}</td>
                     <td scope="col">
-                        <nuxt-link :to="{ name: 'PostViewPage', params: { postId: post.bbsId } }">
-                            {{ post.bbsTit }}
+                        <nuxt-link :to="{ path: '/post/' + post.id, params: { postId: post.id }}" >
+                        <!-- this.fetchPost(`${this.$route.params.postId}`) -->
+                            {{ post.title }}
                         </nuxt-link> 
-                        <!-- [{{ post.comments.length }}] -->
+                        [{{ post.comments.length }}]
                     </td>
-                    <td scope="col">{{ post.regUserId }}</td>
-                    <td scope="col">{{ post.regDttm }}</td>
+                    <td scope="col">{{ post.user.name }}</td>
+                    <td scope="col">{{ post.createdAt }}</td>
                 </tr>
             </tbody>
         </table>

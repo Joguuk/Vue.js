@@ -1,12 +1,16 @@
 <template>
     <div class="post-view-page">
-        <post-view v-if="post" :post="post" />
+        <div v-if="post"> 
+            <post-view :post="post" />
+            <nuxt-link :to="{ path: '/post/' + post.id + '/edit', params: post.id }">수정</nuxt-link>
+            <button @click="onDelete">삭제</button>
+            <nuxt-link :to="{ path: '/' }">목록</nuxt-link>
+            <!-- <comment-list :comments="post.comments" />
+            <comment-form @submit="onCommentSubmit" /> -->
+        </div>
         <p v-else>게시글 불러오는 중...</p>
-        <nuxt-link :to="{ name: 'PostEditPage', params: { postId } }">수정</nuxt-link>
-        <button @click="onDelete">삭제</button>
-        <nuxt-link :to="{ name: 'PostListPage' }">목록</nuxt-link>
-        <!-- <comment-list v-if="post" :comments="post.comments" />
-        <comment-form @submit="onCommentSubmit" /> -->
+        <comment-list v-if="post" :comments="post.comments" />
+        <comment-form @submit="onCommentSubmit" />
     </div>
 </template>
 
@@ -24,12 +28,6 @@ export default {
         CommentList,
         CommentForm
     },
-    props: {
-        postId: {
-            type: String,
-            required: true
-        }
-    },
     methods: {
         ...mapActions([
             'fetchPost',
@@ -40,12 +38,12 @@ export default {
             api.delete(`/posts/${id}`)
                 .then(res => {
                     alert('게시물이 성공적으로 삭제되었습니다.')
-                    this.$router.push({ name: 'PostListPage' })
+                    this.$router.push({ path: '/' })
                 })
                 .catch(err => {
                     if (err.response.status === 401) {
                         alert('로그인이 필요합니다.')
-                        this.$router.push({ name: 'Signin' })
+                        this.$router.push({ path: '/signin' })
                     } else {
                         alert(err.response.data.msg)
                     }
@@ -54,7 +52,7 @@ export default {
         onCommentSubmit(comment) {
             if (!this.isAuthorized) {
                 alert('로그인이 필요합니다!')
-                this.$router.push({ name: 'Signin' })
+                this.$router.push({ path: '/signin' })
             } else {
                 this.createComment(comment)
                     .then(() => {
@@ -79,12 +77,12 @@ export default {
                 this.$router.back()
             })
     },
-    created() {
-        // this.fetchPost(`${this.$route.params.postId}`)
-        //     .catch(err => {
-        //         alert(err.response.data.msg);
-        //         this.$router.back()
-        //     })
-    }
+    // created() {
+    //     this.fetchPost(`/${this.$route.params.postId}`)
+    //         .catch(err => {
+    //             alert(err.response.data.msg);
+    //             this.$router.back()
+    //         }) 
+    // }
 }
 </script>

@@ -3,7 +3,7 @@
         <h3>회원가입</h3>
         <signup-form @submit="onSubmit" />
         <p>이미 가입하셨나요? 
-            <router-link :to="{ name: 'Signin' }">로그인하러 가기</router-link>
+            <router-link :to="{ path: '/signin' }">로그인하러 가기</router-link>
         </p>
     </div>
 </template>
@@ -21,7 +21,7 @@ export default {
             api.post('/auth/signup', { name, email, password })
                 .then(res => {
                     alert('회원가입이 완료되었습니다.')
-                    this.$router.push({ name: 'Signin' })
+                    this.$router.push({ path: '/signin' })
                 })
                 .catch(err => {
                     alert(err.response.data.msg)

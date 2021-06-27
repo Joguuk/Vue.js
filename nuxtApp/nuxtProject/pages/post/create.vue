@@ -12,6 +12,7 @@ import api from '@/api'
 export default {
     name: 'PostCreatePage',
     components: { PostCreateForm },
+    middleware: 'isAuthorized',
     methods: {
         onSubmit(payload) {
             const { title, contents } = payload
@@ -19,14 +20,14 @@ export default {
                 .then(res => {
                     alert('게시물이 성공적으로 작성되었습니다.')
                     this.$router.push({
-                        name: 'PostViewPage',
+                        path: '/',
                         params: { postId: res.data.id.toString() }
                     })
                 })
                 .catch(err => {
                     if (err.response.status === 401) {
                         alert('로그인이 필요합니다.')
-                        this.$router.push({ name: 'Signin' })
+                        this.$router.push({ path: '/signin' })
                     } else {
                         alert(err.response.data.msg)
                     }

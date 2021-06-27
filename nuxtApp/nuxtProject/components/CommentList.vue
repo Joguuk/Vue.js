@@ -33,7 +33,7 @@ export default {
                 .catch(err => {
                     if (err.response.status === 401) {
                         alert('로그인이 필요합니다.')
-                        this.$router.push({ name: 'Signin' })
+                        this.$router.push({ path: '/signin' })
                     } else {
                         alert(err.response.data.msg)
                     }
@@ -47,7 +47,7 @@ export default {
                 .catch(err => {
                     if (err.response.status === 401) {
                         alert('로그인이 필요합니다.')
-                        this.$router.push({ name: 'Signin' })
+                        this.$router.push({ path: '/signin' })
                     } else {
                         alert(err.response.data.msg)
                     }
